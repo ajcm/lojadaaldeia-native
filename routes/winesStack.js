@@ -1,25 +1,26 @@
 import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
 
-import About from '../screens/about';
+import Wines from '../screens/wines';
 import Header from '../shared/header';
 import React from 'react';
 
 const screens = {
-  About: {
-    screen: About,
+  Wines: {
+    screen: Wines,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title='about' navigation={navigation} />
+        headerTitle: () => <Header title='Vinhos' navigation={navigation} />
       }
     }
   }
 };
 
-const AboutStack = createStackNavigator(screens, {
+const WinesStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: '#444',
     headerStyle: { backgroundColor: '#eee', height: 80 }
   }
 });
 
-export default AboutStack;
+export default WinesStack;
