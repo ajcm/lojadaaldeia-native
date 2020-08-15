@@ -4,10 +4,10 @@ import { globalStyles } from '../styles/global';
 import Footer from '../shared/footer';
 
 
-export default function Wines({ navigation }) {
+export default function Cart({ navigation }) {
   return (
     <View style={globalStyles.container}>
-        <Text>wines page content here</Text>
+        <Text>cart page content here</Text>
         <Footer navigation={navigation} />
     </View>
   );

@@ -12,6 +12,7 @@ import ProductsStack from './productsStack';
 import WinesStack from './winesStack';
 import CheesesStack from './cheesesStack';
 import SmokesStack from './smokesStack';
+import CartStack from './cartStack';
 import SideMenu from './sideMenu';
 
 const RootDrawerNavigator = createDrawerNavigator(
@@ -45,6 +46,9 @@ const RootDrawerNavigator = createDrawerNavigator(
         },
         Smokes: {
             screen: SmokesStack
+        },
+        Cart: {
+            screen: CartStack
         },
         About: {
             screen: AboutStack

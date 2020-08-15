@@ -46,7 +46,6 @@ class SideMenu extends Component {
   }
 
   navigateToScreen = route => () => {
-      console.log(route);
     const navigateAction = NavigationActions.navigate({
       routeName: route,
     });
