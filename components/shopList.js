@@ -11,7 +11,6 @@ export default function ShopList({ navigation }) {
     ]);
 
     const pressHandler = (id) => {
-        console.log(id);
         navigation.navigate('ProductDetails', { id: id });
     }
 

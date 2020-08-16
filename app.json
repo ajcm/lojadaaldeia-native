@@ -22,8 +22,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lojaDaAldeia"
     },
-    "description": ""
+    "description": "",
+    "android": {
+      "package": "com.lojaDaAldeia"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }

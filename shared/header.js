@@ -1,7 +1,9 @@
 import React from 'react';
 import { SearchBar } from 'react-native-elements';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { NavigationActions } from 'react-navigation';
+
 
 export default function Header({ title, navigation }) {
         
@@ -20,9 +22,17 @@ export default function Header({ title, navigation }) {
       navigation.openDrawer();
     }
 
+    const navigateToScreen = () => {
+      navigation.dispatch(NavigationActions.navigate({
+        routeName: 'Profile'
+      }));
+    };
+
     return (
         <View style={styles.header}>
-          <MaterialIcons name='menu' size={28} onPress={openMenu} style={styles.menuicon} />
+          <TouchableOpacity onPress={openMenu} style={styles.menuicon} >
+            <MaterialIcons name='menu' size={28} />
+          </TouchableOpacity>
           <SearchBar
             round
             inputStyle={styles.searchInputStyle}
@@ -36,7 +46,9 @@ export default function Header({ title, navigation }) {
             onClear={clearSearch}
             value={search}
           />   
-          <MaterialCommunityIcons name='account' size={28} style={styles.profileIcon} />
+          <TouchableOpacity onPress={navigateToScreen} style={styles.profileIcon} >
+            <MaterialCommunityIcons name='account' size={28} />
+          </TouchableOpacity>
         </View>        
       );
 }
@@ -65,7 +77,7 @@ const styles = StyleSheet.create({
       height: '100%',
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'center'
     },
     headerText: {
       fontWeight: 'bold',
@@ -75,7 +87,7 @@ const styles = StyleSheet.create({
     },
     menuicon: {
       position: 'absolute',
-      left: 16,
+      left: 0    
     },
     profileIcon: {
       position: 'absolute',

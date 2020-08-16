@@ -1,4 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import Home from '../screens/home';
 import ProductDetails from '../screens/productDetails';
@@ -10,7 +11,7 @@ const screens = {
     screen: Home,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title='Inicio' navigation={navigation} />
+        headerTitle: () => <Header title='Inicio' navigation={navigation} style={styles.header} />
       }
     }
   },
@@ -26,6 +27,13 @@ const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: '#444',
     headerStyle: { backgroundColor: '#eee', height: 80 }
+  }
+});
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: 'blue',
+    width: '110%'
   }
 });
 
