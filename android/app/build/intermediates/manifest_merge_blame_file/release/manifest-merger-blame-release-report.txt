@@ -1,0 +1,209 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.lojadaaldeiarn"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:2:3-64
+11-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:2:20-62
+12    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+12-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:3:3-75
+12-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:3:20-73
+13    <!-- OPTIONAL PERMISSIONS, REMOVE WHATEVER YOU DO NOT NEED -->
+14    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+14-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:5:3-72
+14-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:5:20-70
+15    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+15-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:6:3-77
+15-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:6:20-75
+16    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+16-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:7:3-72
+16-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:7:20-70
+17    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+17-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:8:3-71
+17-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:8:20-69
+18    <uses-permission android:name="android.permission.VIBRATE" />
+18-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:9:3-63
+18-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:9:20-61
+19    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+19-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:10:3-77
+19-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:10:20-75
+20    <!-- These require runtime permissions on M -->
+21    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+21-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:12:3-78
+21-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:12:20-76
+22    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+22-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:13:3-76
+22-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:13:20-74
+23    <uses-permission android:name="android.permission.CAMERA" />
+23-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:14:3-62
+23-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:14:20-60
+24    <uses-permission android:name="android.permission.READ_CONTACTS" />
+24-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:15:3-69
+24-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:15:20-67
+25    <uses-permission android:name="android.permission.READ_CALENDAR" />
+25-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:16:3-69
+25-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:16:20-67
+26    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+26-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:17:3-70
+26-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:17:20-68
+27    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+27-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:18:3-77
+27-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:18:20-75
+28    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+28-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:19:3-68
+28-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:19:20-66
+29    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+29-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:20:3-78
+29-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:20:20-76
+30    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+30-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:21:3-70
+30-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:21:20-68
+31    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+31-->[:expo-updates] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-updates\android\build\intermediates\library_manifest\release\AndroidManifest.xml:11:5-79
+31-->[:expo-updates] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-updates\android\build\intermediates\library_manifest\release\AndroidManifest.xml:11:22-76
+32    <uses-permission android:name="android.permission.STORAGE" />
+32-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:15:5-66
+32-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:15:22-63
+33    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+33-->[:expo-location] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-location\android\build\intermediates\library_manifest\release\AndroidManifest.xml:13:5-77
+33-->[:expo-location] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-location\android\build\intermediates\library_manifest\release\AndroidManifest.xml:13:22-74
+34    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+34-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:15:5-98
+34-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:15:22-95
+35    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" /> <!-- END OPTIONAL PERMISSIONS -->
+35-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:16:5-94
+35-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:16:22-91
+36    <application
+36-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:23:3-47:17
+37        android:name="com.lojadaaldeiarn.MainApplication"
+37-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:24:5-36
+38        android:allowBackup="false"
+38-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:28:5-32
+39        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+39-->[androidx.core:core:1.1.0] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\7dfdda3e9b1f3eac70960d59b5d8c75a\core-1.1.0\AndroidManifest.xml:24:18-86
+40        android:icon="@mipmap/ic_launcher"
+40-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:26:5-39
+41        android:label="@string/app_name"
+41-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:25:5-37
+42        android:roundIcon="@mipmap/ic_launcher_round"
+42-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:27:5-50
+43        android:theme="@style/AppTheme" >
+43-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:29:5-36
+44        <meta-data
+44-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:31:5-103
+45            android:name="expo.modules.updates.EXPO_UPDATE_URL"
+45-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:31:16-67
+46            android:value="YOUR-APP-URL-HERE" />
+46-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:31:68-101
+47        <meta-data
+47-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:32:5-112
+48            android:name="expo.modules.updates.EXPO_SDK_VERSION"
+48-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:32:16-68
+49            android:value="YOUR-APP-SDK-VERSION-HERE" />
+49-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:32:69-110
+50
+51        <activity
+51-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:33:5-45:16
+52            android:name="com.lojadaaldeiarn.MainActivity"
+52-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:34:7-35
+53            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+53-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:36:7-77
+54            android:label="@string/app_name"
+54-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:35:7-39
+55            android:launchMode="singleTask"
+55-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:37:7-38
+56            android:theme="@style/Theme.App.SplashScreen"
+56-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:39:7-52
+57            android:windowSoftInputMode="adjustResize" >
+57-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:38:7-49
+58            <intent-filter>
+58-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:41:7-44:23
+59                <action android:name="android.intent.action.MAIN" />
+59-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:42:9-60
+59-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:42:17-58
+60
+61                <category android:name="android.intent.category.LAUNCHER" />
+61-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:43:9-68
+61-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:43:19-66
+62            </intent-filter>
+63        </activity>
+64        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+64-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:46:5-81
+64-->D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\android\app\src\main\AndroidManifest.xml:46:15-79
+65
+66        <provider
+66-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:18:9-27:20
+67            android:name="expo.modules.filesystem.FileSystemFileProvider"
+67-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:19:13-74
+68            android:authorities="com.lojadaaldeiarn.FileSystemFileProvider"
+68-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:20:13-74
+69            android:exported="false"
+69-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:21:13-37
+70            android:grantUriPermissions="true" >
+70-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:22:13-47
+71            <meta-data
+71-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:24:13-26:70
+72                android:name="android.support.FILE_PROVIDER_PATHS"
+72-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:25:17-67
+73                android:resource="@xml/file_system_provider_paths" />
+73-->[:expo-file-system] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-file-system\android\build\intermediates\library_manifest\release\AndroidManifest.xml:26:17-67
+74        </provider>
+75
+76        <service
+76-->[:expo-location] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-location\android\build\intermediates\library_manifest\release\AndroidManifest.xml:16:9-18:40
+77            android:name="expo.modules.location.services.LocationTaskService"
+77-->[:expo-location] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-location\android\build\intermediates\library_manifest\release\AndroidManifest.xml:17:13-78
+78            android:exported="false" />
+78-->[:expo-location] D:\Programming\MyCoding\Loja da Aldeia\lojadaaldeia-native\node_modules\expo-location\android\build\intermediates\library_manifest\release\AndroidManifest.xml:18:13-37
+79
+80        <activity
+80-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\4dfe9c2f1166e6aacfc204c97accd892\jetified-play-services-base-16.0.1\AndroidManifest.xml:23:9-26:75
+81            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+81-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\4dfe9c2f1166e6aacfc204c97accd892\jetified-play-services-base-16.0.1\AndroidManifest.xml:24:13-79
+82            android:exported="false"
+82-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\4dfe9c2f1166e6aacfc204c97accd892\jetified-play-services-base-16.0.1\AndroidManifest.xml:25:13-37
+83            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+83-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\4dfe9c2f1166e6aacfc204c97accd892\jetified-play-services-base-16.0.1\AndroidManifest.xml:26:13-72
+84
+85        <meta-data
+85-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\6bec436c7eb484dfa18072cf7f131f29\jetified-play-services-basement-16.0.1\AndroidManifest.xml:23:9-25:69
+86            android:name="com.google.android.gms.version"
+86-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\6bec436c7eb484dfa18072cf7f131f29\jetified-play-services-basement-16.0.1\AndroidManifest.xml:24:13-58
+87            android:value="@integer/google_play_services_version" />
+87-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\6bec436c7eb484dfa18072cf7f131f29\jetified-play-services-basement-16.0.1\AndroidManifest.xml:25:13-66
+88
+89        <service
+89-->[androidx.room:room-runtime:2.1.0] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\dd7893f26029167e3adbacf60755e755\room-runtime-2.1.0\AndroidManifest.xml:25:9-27:40
+90            android:name="androidx.room.MultiInstanceInvalidationService"
+90-->[androidx.room:room-runtime:2.1.0] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\dd7893f26029167e3adbacf60755e755\room-runtime-2.1.0\AndroidManifest.xml:26:13-74
+91            android:exported="false" />
+91-->[androidx.room:room-runtime:2.1.0] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\dd7893f26029167e3adbacf60755e755\room-runtime-2.1.0\AndroidManifest.xml:27:13-37
+92        <service
+92-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:19:9-21:40
+93            android:name="io.nlopez.smartlocation.activity.providers.ActivityGooglePlayServicesProvider$ActivityRecognitionService"
+93-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:20:13-132
+94            android:exported="false" />
+94-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:21:13-37
+95        <service
+95-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:22:9-24:40
+96            android:name="io.nlopez.smartlocation.geofencing.providers.GeofencingGooglePlayServicesProvider$GeofencingService"
+96-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:23:13-127
+97            android:exported="false" />
+97-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:24:13-37
+98        <service
+98-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:25:9-27:40
+99            android:name="io.nlopez.smartlocation.geocoding.providers.AndroidGeocodingProvider$AndroidGeocodingService"
+99-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:26:13-120
+100            android:exported="false" />
+100-->[io.nlopez.smartlocation:library:3.2.11] C:\Users\VitorGalveia\.gradle\caches\transforms-2\files-2.1\9be2e488ceab386b36f55450352c0800\jetified-library-3.2.11\AndroidManifest.xml:27:13-37
+101    </application>
+102
+103</manifest>

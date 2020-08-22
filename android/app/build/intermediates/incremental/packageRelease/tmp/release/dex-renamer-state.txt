@@ -1,0 +1,7 @@
+#Sun Aug 16 13:09:16 BST 2020
+base.0=D\:\\Programming\\MyCoding\\Loja da Aldeia\\lojadaaldeia-native\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
+path.1=classes2.dex
+renamed.1=classes2.dex
+path.0=classes.dex
+renamed.0=classes.dex
+base.1=D\:\\Programming\\MyCoding\\Loja da Aldeia\\lojadaaldeia-native\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes2.dex

@@ -1,12 +1,7 @@
 {
   "expo": {
-    "name": "LojaDaAldeiaRN",
-    "slug": "LojaDaAldeiaRN",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "name": "lojadaaldeia-n-expo",
+    "slug": "lojadaaldeia-n-expo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,13 +17,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.lojaDaAldeia"
+      "supportsTablet": true
     },
-    "description": "",
-    "android": {
-      "package": "com.lojaDaAldeia"
-    },
-    "entryPoint": "node_modules/expo/AppEntry.js"
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
