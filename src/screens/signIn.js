@@ -14,13 +14,16 @@ import { LinearGradient } from 'expo-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { useTheme } from 'react-native-paper';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
-import { AuthContext } from '../components/context';
 import Users from '../mocks/users';
+import * as SessionActions from '../state/actions/session';
 import { globalStyles } from '../styles/global';
 
 
-const SignIn = ({navigation}) => {
+
+const SignIn = (props) => {
 
     const [data, setData] = React.useState({
         username: '',
@@ -32,8 +35,6 @@ const SignIn = ({navigation}) => {
     });
 
     const { colors } = useTheme();
-
-    const { signIn } = React.useContext(AuthContext);
 
     const textInputChange = (val) => {
         if( val.trim().length >= 4 ) {
@@ -93,7 +94,7 @@ const SignIn = ({navigation}) => {
     const loginHandle = (userName, password) => {
 
         const foundUser = Users.filter( item => {
-            return userName == item.username && password == item.password;
+            return userName == item.userName && password == item.password;
         } );
 
         if ( data.username.length == 0 || data.password.length == 0 ) {
@@ -109,7 +110,8 @@ const SignIn = ({navigation}) => {
             ]);
             return;
         }
-        signIn(foundUser);
+
+        props.actions.session.login(foundUser[0].id, foundUser[0].email, foundUser[0].userName, foundUser[0].name, foundUser[0].userToken);
     }
 
     return (
@@ -217,7 +219,7 @@ const SignIn = ({navigation}) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('SignUp')}
+                    onPress={() => props.navigation.navigate('SignUp')}
                     style={[styles.signIn, {
                         borderColor: 'gold',
                         borderWidth: 1,
@@ -234,7 +236,18 @@ const SignIn = ({navigation}) => {
     );
 };
 
-export default SignIn;
+const mapStateToProps = state => {
+    return { }
+}
+
+const mapDispatchToProps = dispatch => ({
+    actions: {
+        session: bindActionCreators(SessionActions, dispatch)
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+
 
 const styles = StyleSheet.create({
     container: {

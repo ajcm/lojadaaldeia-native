@@ -8,13 +8,15 @@ import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Entypo } from '@expo/vector-icons';
 
-import{ AuthContext } from '../components/context';
+// TODO Replace by redux
+//import{ AuthContext } from '../state/context/authContext';
 
 export default function DrawerContent(props) {
 
     const paperTheme = useTheme();
 
-    const { signOut, toggleTheme } = React.useContext(AuthContext);
+    // TODO Replace by redux
+    //const { signOut, toggleTheme } = React.useContext(AuthContext);
 
     return(
         <View style={{flex:1}}>

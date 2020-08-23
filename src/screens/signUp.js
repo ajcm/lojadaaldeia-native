@@ -14,33 +14,57 @@ import {
 import * as Animatable from 'react-native-animatable';
 import { LinearGradient } from 'expo-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
-import { globalStyles } from '../styles/global';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
-const SignUp = ({navigation}) => {
+import { globalStyles } from '../styles/global';
+import * as SessionActions from '../state/actions/session';
+
+const SignUp = (props) => {
+
+    const InputType = {
+        USERNAME: 'username',
+        NAME: 'name',
+        EMAIL: 'email'
+    }
 
     const [data, setData] = React.useState({
         username: '',
+        email: '',
+        name: '',
         password: '',
         confirm_password: '',
-        check_textInputChange: false,
+        check_usernameInputChange: false,
+        check_nameInputChange: false,
+        check_emailInputChange: false,
         secureTextEntry: true,
         confirm_secureTextEntry: true,
     });
 
-    const textInputChange = (val) => {
-        if( val.length !== 0 ) {
-            setData({
-                ...data,
-                username: val,
-                check_textInputChange: true
-            });
-        } else {
-            setData({
-                ...data,
-                username: val,
-                check_textInputChange: false
-            });
-        }
+    const textInputChange = (val, inputType) => {
+        switch(inputType) {
+            case InputType.USERNAME:
+                setData({
+                    ...data,
+                    username: val,
+                    check_usernameInputChange: val.length !== 0
+                });
+                break;
+            case InputType.NAME:
+                setData({
+                    ...data,
+                    name: val,
+                    check_nameInputChange: val.length !== 0
+                });
+                break;
+            case InputType.EMAIL:
+                setData({
+                    ...data,
+                    email: val,
+                    check_emailInputChange: val.length !== 0
+                });
+                break;
+        }        
     }
 
     const handlePasswordChange = (val) => {
@@ -88,9 +112,51 @@ const SignUp = ({navigation}) => {
                     placeholder="Your Username"
                     style={styles.textInput}
                     autoCapitalize="none"
-                    onChangeText={(val) => textInputChange(val)}
+                    onChangeText={(val) => textInputChange(val, InputType.USERNAME)}
                 />
-                {data.check_textInputChange ? 
+                {data.check_usernameInputChange ? 
+                <Animatable.View
+                    animation="bounceIn"
+                >
+                    <Feather 
+                        name="check-circle"
+                        color="green"
+                        size={20}
+                    />
+                </Animatable.View>
+                : null}
+            </View>
+
+            <Text style={[styles.text_footer, globalStyles.textColor]}>Name</Text>
+            <View style={styles.action}>
+                <TextInput 
+                    placeholder="Your Name"
+                    style={styles.textInput}
+                    autoCapitalize="none"
+                    onChangeText={(val) => textInputChange(val, InputType.NAME)}
+                />
+                {data.check_nameInputChange ? 
+                <Animatable.View
+                    animation="bounceIn"
+                >
+                    <Feather 
+                        name="check-circle"
+                        color="green"
+                        size={20}
+                    />
+                </Animatable.View>
+                : null}
+            </View>
+
+            <Text style={[styles.text_footer, globalStyles.textColor]}>Email</Text>
+            <View style={styles.action}>
+                <TextInput 
+                    placeholder="Your email"
+                    style={styles.textInput}
+                    autoCapitalize="none"
+                    onChangeText={(val) => textInputChange(val, InputType.EMAIL)}
+                />
+                {data.check_emailInputChange ? 
                 <Animatable.View
                     animation="bounceIn"
                 >
@@ -184,7 +250,7 @@ const SignUp = ({navigation}) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => navigation.goBack()}
+                    onPress={() => props.navigation.goBack()}
                     style={[styles.signIn, {
                         borderColor: 'gold',
                         borderWidth: 1,
@@ -202,7 +268,18 @@ const SignUp = ({navigation}) => {
     );
 };
 
-export default SignUp;
+const mapStateToProps = state => {
+    return { }
+}
+
+const mapDispatchToProps = dispatch => ({
+    actions: {
+        session: bindActionCreators(SessionActions, dispatch)
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+
 
 const styles = StyleSheet.create({
     container: {
