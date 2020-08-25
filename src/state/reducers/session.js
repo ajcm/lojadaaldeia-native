@@ -14,7 +14,7 @@ const initialSessionState = {
   email: null
 };
 
-export default session = (prevState = initialSessionState, action) => {
+export default function session(prevState = initialSessionState, action) {
   switch(action.type) {
     case RETRIEVE_TOKEN:
       return {
