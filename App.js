@@ -9,6 +9,8 @@ import {
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme
 } from 'react-native-paper';
+import Amplify from "aws-amplify";
+import awsExports from "./aws-exports";
 
 import rootReducer from './src/state/reducers';
 import { Provider } from 'react-redux';
@@ -17,6 +19,9 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import AppContent from './AppContent'
 
+
+
+Amplify.configure(awsExports);
 
  // create redux store
  const loggerMiddleware = createLogger();

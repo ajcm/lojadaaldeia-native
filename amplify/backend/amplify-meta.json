@@ -1,0 +1,47 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-web-lda-151537-authRole",
+            "UnauthRoleArn": "arn:aws:iam::042746780522:role/amplify-web-lda-151537-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::042746780522:role/amplify-web-lda-151537-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-web-lda-151537-deployment",
+            "UnauthRoleName": "amplify-web-lda-151537-unauthRole",
+            "StackName": "amplify-web-lda-151537",
+            "StackId": "arn:aws:cloudformation:eu-west-1:042746780522:stack/amplify-web-lda-151537/2c8ef800-badc-11ea-a12f-0a07909a05bc",
+            "AmplifyAppId": "d29y4dfsf9pqal"
+        },
+        "categories": {
+            "auth": {
+                "lojadaaldeiawebd6cb8f14": {}
+            }
+        }
+    },
+    "function": {
+        "web1": {
+            "build": true,
+            "providerPlugin": "awscloudformation",
+            "service": "Lambda"
+        }
+    },
+    "auth": {
+        "web91ac42a5": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "customAuth": false
+        },
+        "web377a21f4": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "customAuth": false
+        },
+        "lojadaaldeiawebd6cb8f14": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "customAuth": false
+        }
+    }
+}

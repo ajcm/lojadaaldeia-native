@@ -16,6 +16,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { Auth } from 'aws-amplify'
 
 import Users from '../mocks/users';
 import * as SessionActions from '../state/actions/session';
@@ -93,10 +94,7 @@ const SignIn = (props) => {
 
     const loginHandle = (userName, password) => {
 
-        const foundUser = Users.filter( item => {
-            return userName == item.userName && password == item.password;
-        } );
-
+        console.log('loginHandle');
         if ( data.username.length == 0 || data.password.length == 0 ) {
             Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
                 {text: 'Okay'}
@@ -104,14 +102,28 @@ const SignIn = (props) => {
             return;
         }
 
-        if ( foundUser.length == 0 ) {
-            Alert.alert('Invalid User!', 'Username or password is incorrect.', [
+        // const foundUser = Users.filter( item => {
+        //     return userName == item.userName && password == item.password;
+        // } );
+        try {
+            const foundUser = await Auth.signIn({ username, password, attributes: { email }})
+
+            console.log(foundUser);
+            props.actions.session.login(foundUser[0].id, foundUser[0].email, foundUser[0].userName, foundUser[0].name, foundUser[0].userToken);
+        } catch(error) {
+            console.log('error signing in', error);
+            Alert.alert('Invalid User!', error, [
                 {text: 'Okay'}
             ]);
             return;
         }
-
-        props.actions.session.login(foundUser[0].id, foundUser[0].email, foundUser[0].userName, foundUser[0].name, foundUser[0].userToken);
+        
+        // if ( foundUser.length == 0 ) {
+        //     Alert.alert('Invalid User!', 'Username or password is incorrect.', [
+        //         {text: 'Okay'}
+        //     ]);
+        //     return;
+        // }        
     }
 
     return (

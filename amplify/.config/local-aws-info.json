@@ -1,0 +1,7 @@
+{
+    "lda": {
+        "configLevel": "project",
+        "useProfile": true,
+        "profileName": "lojadaaldeia-native"
+    }
+}
