@@ -8,8 +8,11 @@ import { API } from 'aws-amplify';
 
     useEffect(() => {
 
+
+        console.log('Load *****************') 
         API.get(api, service, {})
-        .then(response => setData(response))
+        .then(response =>  { setData(response)
+                      console.log(response) } )
         .catch(error => console.log(error))
 
     },[])

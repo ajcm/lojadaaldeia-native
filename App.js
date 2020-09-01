@@ -16,7 +16,8 @@ import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import AppContent from './AppContent'
-import Amplify from 'aws-amplify-react-native'
+
+import Amplify from 'aws-amplify'
 import {  Auth  } from 'aws-amplify';
 
  // create redux store
@@ -39,15 +40,27 @@ import {  Auth  } from 'aws-amplify';
       userPoolId: "eu-west-1_mYdYam566",
       userPoolWebClientId: 'm7hlnqu5a0b2247ek46foi4e6',
   },
+  Analytics: {
+    disabled: true,
+  },
   API: {
       endpoints: [
         
         {
-          name: "userdetails-service",
+          name: "userdetails-service111",
           endpoint: "https://qg0h01w3zg.execute-api.eu-west-1.amazonaws.com/dev/details/",
-          custom_header: async () => {         
-             return { Authorization: `${(await Auth.currentSession()).getAccessToken().getJwtToken()}` , 'X-Api-Key': 'ldamobile'}
-        }},
+     
+      
+      },
+
+      {
+        name: "userdetails-service",
+        endpoint: "https://qg0h01w3zg.execute-api.eu-west-1.amazonaws.com/dev/details/",
+        custom_header: async () => {         
+           return { Authorization: `${(await Auth.currentSession()).getAccessToken().getJwtToken()}`}
+      },
+    
+    },
       
   ]
   }

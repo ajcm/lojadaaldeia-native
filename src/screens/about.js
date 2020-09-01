@@ -4,6 +4,7 @@ import { globalStyles } from '../styles/global';
 
 import {  Auth  } from 'aws-amplify';
 import { withAuthenticator } from 'aws-amplify-react-native'
+
 import UserDetails from '../components/userDetails'
 
 
@@ -32,12 +33,11 @@ const About = ({ navigation })  => {
   return (
     <View style={globalStyles.container}>
         <Text>{formState ?  formState.email : ''}</Text>
-
         <UserDetails  api="userdetails-service" section="profile"/>
-  
+     
     </View>
   );
 }
 
 
-export default About
+export default withAuthenticator(About)

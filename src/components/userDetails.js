@@ -3,26 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import {useGetRemote} from '../remote/Remote'
+import { withAuthenticator } from 'aws-amplify-react-native'
 
-export default function UserDetail({api,section}) {
+const  UserDetail = ({api,section}) => {
 
     const [state] = useGetRemote(api,section)
 
-    useEffect(() => init(),[]);
+
   
-    const init = () => {
-
-        console.log('load ************* ')
-
-        API.get(api, section, {})
-        .then(response => setState(response.Item))
-        .catch(error => console.log(error)) 
-
-       
-       
-    }
-  
-
 
 
 
@@ -30,8 +18,12 @@ export default function UserDetail({api,section}) {
 
     return (
     <View >
-        <Text>{state && state.Item ? state.Item.name : ''}</Text>
+        <Text> --{state && state.Item ? state.Item.name : ''}</Text>
+
     </View>    
     )
 }
 
+
+
+export default withAuthenticator(UserDetail)
