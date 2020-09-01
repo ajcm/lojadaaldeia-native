@@ -10,9 +10,9 @@ const Users = [
     {
         id: 2, 
         email: 'user2@email.com',
-        userName: 'user2', 
+        userName: 'user', 
         name: 'Armando',
-        password: 'pass1234', 
+        password: 'password', 
         userToken: 'token12345'
     },
     {

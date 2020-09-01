@@ -17,12 +17,15 @@
       "**/*"
     ],
     "ios": {
-      	"supportsTablet": true,
- 	"bundleIdentifier": "pt.lojadaaldeia.app",
-      	"buildNumber": "1.0.0"	
+      "supportsTablet": true,
+      "bundleIdentifier": "pt.lojadaaldeia.app",
+      "buildNumber": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "pt.lojadaaldeia.app"
     }
   }
 }

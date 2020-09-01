@@ -16,19 +16,19 @@ const Drawer = createDrawerNavigator();
 
 const AppContent = (props) => {
 
-  useEffect(() => {
-    setTimeout(async() => {
-      props.actions.session.retrieveToken();
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(async() => {
+  //     props.actions.session.retrieveToken();
+  //   }, 1000);
+  // }, []);
 
-  if (props.isLoading) {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
+  // if (props.isLoading) {
+  //   return (
+  //     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+  //       <ActivityIndicator size="large" />
+  //     </View>
+  //   );
+  // }
 
   if (props.userToken === null) return (<RootStack />);
 
@@ -53,4 +53,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContent)
+export default AppContent
