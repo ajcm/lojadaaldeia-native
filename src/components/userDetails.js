@@ -10,15 +10,11 @@ const  UserDetail = ({api,section}) => {
     const [state] = useGetRemote(api,section)
 
 
-  
-
-
-
-  
+    
 
     return (
     <View >
-        <Text> --{state && state.Item ? state.Item.name : ''}</Text>
+        <Text>Nome: {state && state.Item ? state.Item.name : ''}</Text>
 
     </View>    
     )

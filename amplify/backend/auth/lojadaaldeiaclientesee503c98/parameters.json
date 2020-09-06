@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "web377a21f4_identitypool_377a21f4",
+    "identityPoolName": "lojadaaldeiaclientesee503c98_identitypool_ee503c98",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "web377a21f4",
-    "userPoolName": "web377a21f4_userpool_377a21f4",
+    "resourceNameTruncated": "lojadaee503c98",
+    "userPoolName": "lojadaaldeiaclientesee503c98_userpool_ee503c98",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -18,7 +18,8 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email"
+        "email",
+        "phone_number"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -28,10 +29,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "web377377a21f4_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "lojadaee503c98_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "377a21f4",
-    "resourceName": "web377a21f4",
+    "sharedId": "ee503c98",
+    "resourceName": "lojadaaldeiaclientesee503c98",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -47,8 +48,13 @@
     },
     "useDefault": "default",
     "usernameAttributes": [
-        "email, phone_number"
+        "email"
     ],
+    "triggers": "{}",
     "userPoolGroupList": [],
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
     "dependsOn": []
 }

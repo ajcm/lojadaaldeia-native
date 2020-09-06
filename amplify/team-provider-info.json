@@ -1,25 +1,20 @@
 {
-    "lda": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-web-lda-151537-authRole",
-            "UnauthRoleArn": "arn:aws:iam::042746780522:role/amplify-web-lda-151537-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::042746780522:role/amplify-web-lda-151537-authRole",
-            "Region": "eu-west-1",
-            "DeploymentBucketName": "amplify-web-lda-151537-deployment",
-            "UnauthRoleName": "amplify-web-lda-151537-unauthRole",
-            "StackName": "amplify-web-lda-151537",
-            "StackId": "arn:aws:cloudformation:eu-west-1:042746780522:stack/amplify-web-lda-151537/2c8ef800-badc-11ea-a12f-0a07909a05bc",
-            "AmplifyAppId": "d29y4dfsf9pqal"
-        },
-        "categories": {
-            "auth": {
-                "web91ac42a5": {},
-                "web377a21f4": {},
-                "lojadaaldeiawebd6cb8f14": {}
-            },
-            "function": {
-                "web1": {}
-            }
-        }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lojadaaldeiaclientes-dev-121121-authRole",
+      "UnauthRoleArn": "arn:aws:iam::042746780522:role/amplify-lojadaaldeiaclientes-dev-121121-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::042746780522:role/amplify-lojadaaldeiaclientes-dev-121121-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-lojadaaldeiaclientes-dev-121121-deployment",
+      "UnauthRoleName": "amplify-lojadaaldeiaclientes-dev-121121-unauthRole",
+      "StackName": "amplify-lojadaaldeiaclientes-dev-121121",
+      "StackId": "arn:aws:cloudformation:eu-west-1:042746780522:stack/amplify-lojadaaldeiaclientes-dev-121121/89014320-ef68-11ea-a27b-0adb030b5f58",
+      "AmplifyAppId": "d2ybp2x19ymuqp"
+    },
+    "categories": {
+      "auth": {
+        "lojadaaldeiaclientesee503c98": {}
+      }
     }
+  }
 }
