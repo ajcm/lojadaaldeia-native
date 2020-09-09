@@ -13,7 +13,12 @@
         },
         "categories": {
             "auth": {
+                "web91ac42a5": {},
+                "web377a21f4": {},
                 "lojadaaldeiawebd6cb8f14": {}
+            },
+            "function": {
+                "web1": {}
             }
         }
     }

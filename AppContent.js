@@ -9,6 +9,8 @@ import RootStack from './src/routes/rootStack';
 import About from './src/screens/about';
 import DrawerContent from './src/routes/drawerContent';
 import MainTabStack from './src/routes/mainTabStack';
+import ProductDetails from './src/routes/productDetailsStack';
+
 import * as SessionActions from './src/state/actions/session';
 
 
@@ -30,12 +32,13 @@ const AppContent = (props) => {
     );
   }
 
-  if (props.userToken === null) return (<RootStack />);
+  if (props.accessToken === null) return (<RootStack />);
 
   return (        
     <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
       <Drawer.Screen name="Home" component={MainTabStack} />
       <Drawer.Screen name="About" component={About} />
+      <Drawer.Screen name="ProductDetails" component={ProductDetails} />
     </Drawer.Navigator>
   );
 }
@@ -43,7 +46,7 @@ const AppContent = (props) => {
 const mapStateToProps = state => {
   return { 
     isLoading: state.session.isLoading,
-    userToken: state.session.userToken 
+    accessToken: state.session.accessToken 
   }
 }
 

@@ -7,16 +7,16 @@ import {
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Entypo } from '@expo/vector-icons';
+import { Auth } from 'aws-amplify';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
-// TODO Replace by redux
-//import{ AuthContext } from '../state/context/authContext';
+import * as SessionActions from '../state/actions/session';
 
-export default function DrawerContent(props) {
+
+const DrawerContent = (props) => {
 
     const paperTheme = useTheme();
-
-    // TODO Replace by redux
-    //const { signOut, toggleTheme } = React.useContext(AuthContext);
 
     return(
         <View style={{flex:1}}>
@@ -199,12 +199,23 @@ export default function DrawerContent(props) {
                         />
                     )}
                     label="Sign Out"
-                    onPress={() => {signOut()}}
+                    onPress={() => {
+                        props.actions.logout();
+                        Auth.signOut();
+                    }}
                 />
             </Drawer.Section>
         </View>
     );
 }
+
+const mapStateToProps = state => ({ })
+
+const mapDispatchToProps = dispatch => ({    
+    actions: bindActionCreators(SessionActions, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerContent)
 
 const styles = StyleSheet.create({
     drawerContent: {

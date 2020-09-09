@@ -8,9 +8,9 @@ import {
 
 const initialSessionState = {
   isLoading: true,
-  id: 0, 
   userName: null,
-  userToken: null,
+  phone: null,
+  accessToken: null,
   email: null
 };
 
@@ -19,37 +19,31 @@ export default function session(prevState = initialSessionState, action) {
     case RETRIEVE_TOKEN:
       return {
         ...prevState,
-        userToken: action.userToken,
+        accessToken: action.accessToken,
         isLoading: false,
       };
     case LOGIN:
       return {
         ...prevState,
-        id: action.id,
-        email: action.email,
         userName: action.userName,
-        name: action.name,
-        userToken: action.userToken,
+        phone: action.phone,
+        accessToken: action.accessToken,
         isLoading: false,
       };
     case LOGOUT: 
       return {
         ...prevState,
-        id: null,
-        email: null,
-        name: null,
         userName: null,
-        userToken: null,
+        accessToken: null,
+        phone: null,
         isLoading: false,
       };
     case REGISTER: 
       return {
         ...prevState,
-        id: action.id,
-        email: action.email,
         userName: action.userName,
-        name: action.name,
-        userToken: action.userToken,
+        phone: action.phone,
+        accessToken: action.accessToken,
         isLoading: false,
       };
     default:

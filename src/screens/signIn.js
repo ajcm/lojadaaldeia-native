@@ -16,12 +16,11 @@ import Feather from 'react-native-vector-icons/Feather';
 import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { Auth } from 'aws-amplify'
+import { Auth } from 'aws-amplify';
 
 import Users from '../mocks/users';
 import * as SessionActions from '../state/actions/session';
 import { globalStyles } from '../styles/global';
-
 
 
 const SignIn = (props) => {
@@ -32,7 +31,7 @@ const SignIn = (props) => {
         check_textInputChange: false,
         secureTextEntry: true,
         isValidUser: true,
-        isValidPassword: true,
+        isValidPassword: true
     });
 
     const { colors } = useTheme();
@@ -92,38 +91,25 @@ const SignIn = (props) => {
         }
     }
 
-    const loginHandle = (userName, password) => {
+    const loginHandle = async () => {
 
-        console.log('loginHandle');
-        if ( data.username.length == 0 || data.password.length == 0 ) {
+        if (data.username.length == 0 || data.password.length == 0 ) {
             Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
                 {text: 'Okay'}
             ]);
             return;
         }
-
-        // const foundUser = Users.filter( item => {
-        //     return userName == item.userName && password == item.password;
-        // } );
-        try {
-            const foundUser = await Auth.signIn({ username, password, attributes: { email }})
-
-            console.log(foundUser);
-            props.actions.session.login(foundUser[0].id, foundUser[0].email, foundUser[0].userName, foundUser[0].name, foundUser[0].userToken);
-        } catch(error) {
-            console.log('error signing in', error);
-            Alert.alert('Invalid User!', error, [
-                {text: 'Okay'}
-            ]);
-            return;
-        }
         
-        // if ( foundUser.length == 0 ) {
-        //     Alert.alert('Invalid User!', 'Username or password is incorrect.', [
-        //         {text: 'Okay'}
-        //     ]);
-        //     return;
-        // }        
+        try {
+            await Auth.signIn(data.username.trim(), data.password.trim())
+                .then((result) => {
+                    props.actions.login(result.signInUserSession.idToken.payload.email, result.signInUserSession.idToken.payload.phone_number, result.signInUserSession.accessToken.jwtToken);
+                    // props.navigation.navigate('Home'); 
+                });
+        } catch(error) {
+            Alert.alert('Ops', 'Invalid username or password!', [{text: 'Okay'}]);
+            return;
+        }       
     }
 
     return (
@@ -205,20 +191,21 @@ const SignIn = (props) => {
                     }
                 </TouchableOpacity>
             </View>
-            { data.isValidPassword ? null : 
-            <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
-            </Animatable.View>
-            }
-            
-
-            <TouchableOpacity>
+            { 
+                data.isValidPassword ? null : 
+                <Animatable.View animation="fadeInLeft" duration={500}>
+                <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
+                </Animatable.View>
+            }            
+                        
+            <TouchableOpacity
+                onPress={() => props.navigation.navigate('SendCodeToEmail')}>
                 <Text style={{color: 'gold', marginTop:15}}>Forgot password?</Text>
             </TouchableOpacity>
             <View style={styles.button}>
                 <TouchableOpacity
                     style={styles.signIn}
-                    onPress={() => {loginHandle( data.username, data.password )}}
+                    onPress={loginHandle}
                 >
                 <LinearGradient
                     colors={['yellow', 'gold']}
@@ -248,14 +235,10 @@ const SignIn = (props) => {
     );
 };
 
-const mapStateToProps = state => {
-    return { }
-}
+const mapStateToProps = state => ({ })
 
-const mapDispatchToProps = dispatch => ({
-    actions: {
-        session: bindActionCreators(SessionActions, dispatch)
-    }
+const mapDispatchToProps = dispatch => ({    
+    actions: bindActionCreators(SessionActions, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
