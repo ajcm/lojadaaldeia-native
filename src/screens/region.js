@@ -7,7 +7,6 @@ export default function Region({ navigation }) {
   return (
     <View style={globalStyles.container}>
         <Text>region page content here</Text>
-        <Footer navigation={navigation} />
     </View>
   );
 }

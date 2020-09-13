@@ -10,14 +10,15 @@ import {
   DarkTheme as PaperDarkTheme
 } from 'react-native-paper';
 import Amplify from "aws-amplify";
-
 import rootReducer from './src/state/reducers';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import AppContent from './AppContent';
-import {  Auth  } from 'aws-amplify';
+import { Auth, Hub } from 'aws-amplify';
+
+import AuthStack from './src/routes/authStack';
+import AppStack from './src/routes/appStack';
 
 
 Amplify.configure(
@@ -61,10 +62,9 @@ Amplify.configure(
    )
  );
 
+export default function App({props}) {
 
-export default function App() {
-
-  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
+  let [user, setUser] = React.useState(null);
 
   const CustomDefaultTheme = {
     ...NavigationDefaultTheme,
@@ -88,13 +88,28 @@ export default function App() {
     }
   }
 
-  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+  const theme = false ? CustomDarkTheme : CustomDefaultTheme;
 
+  useEffect(() => {
+    let updateUser = async authState => {
+      try {
+        let user = await Auth.currentAuthenticatedUser()
+        setUser(user)
+      } catch {
+        setUser(null)
+      }
+    }
+    Hub.listen('auth', updateUser);
+    updateUser();
+    return () => Hub.remove('auth', updateUser)
+  }, []);
 
-  return (
+  return (    
     <Provider store={store}>
       <NavigationContainer theme={theme}>
-        <AppContent />
+        {
+          user ? (<AppStack />) : (<AuthStack />)
+        }
       </NavigationContainer>
     </Provider>
   );

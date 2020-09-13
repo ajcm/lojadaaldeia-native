@@ -7,7 +7,6 @@ export default function Cart({ navigation }) {
   return (
     <View style={globalStyles.container}>
         <Text>cart page content here</Text>
-        <Footer navigation={navigation} />
     </View>
   );
 }

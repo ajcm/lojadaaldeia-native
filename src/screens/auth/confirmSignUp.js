@@ -18,49 +18,39 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Auth } from 'aws-amplify';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { useTheme } from '@react-navigation/native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import { globalStyles } from '../styles/global';
-import * as SessionActions from '../state/actions/session';
+import { globalStyles } from '../../styles/global';
+import * as SessionActions from '../../state/actions/session';
 
-const SendCodeToEmail = (props) => {
-    const { colors } = useTheme();
+
+const ConfirmSignUp = (props) => {
 
     const [data, setData] = React.useState({
-        username: ''
+        code: ''
     });
 
     const textInputChange = (val) => {
-        setData({username: val});
-    }
-
-    const handleValidUser = (val) => {
-        if( val.trim().length >= 4 ) {
-            setData({
-                ...data,
-                isValidUser: true
-            });
-        } else {
-            setData({
-                ...data,
-                isValidUser: false
-            });
-        }
+        setData({
+            ...data,
+            code: val,
+            
+        });
     }
     
-    const redefineHandle = async () => {
+    const confirmSignUpHandle = async () => {
+        const username = navigation.getParam('username');
 
-        if ( data.username.length == 0) {
-            Alert.alert('Wrong Input!', 'The username field is empty', [{text: 'Okay'}]);
+        if ( username.length == 0 || data.code.length == 0 ) {
+            Alert.alert('Wrong Input!', 'Make sure you filled out all fields.', [
+                {text: 'Okay'}
+            ]);
             return;
-        }
-        
+        }        
+
         try {
-            await Auth.forgotPassword(data.username.trim())
-                .then(() => { props.navigation.navigate('RedefinePassword', { username: data.username.trim() }); });
+            await Auth.confirmSignUp(username, data.code).then(() => { props.navigation.navigate('Home'); });
         } catch(error) {
-            Alert.alert('Ops!', error.message, [{text: 'Okay'}]);
+            Alert.alert('Ops', error.message, [{text: 'Okay'}]);
             return;
         }
     }
@@ -69,50 +59,49 @@ const SendCodeToEmail = (props) => {
       <View style={styles.container}>
           <StatusBar backgroundColor='gold' barStyle="light-content"/>
         <View style={styles.header}>
-            <Text style={styles.text_header}>Recover your password!</Text>
+            <Text style={styles.text_header}>Confirm your email</Text>
         </View>
         <Animatable.View 
             animation="fadeInUpBig"
             style={styles.footer}
         >
             <ScrollView>
-                <Text style={[styles.text_footer, globalStyles.textColor]}>Username</Text>
-                <View style={styles.action}>
-                    <FontAwesome 
-                        name="user-o"
-                        color={colors.text}
+
+            <Text style={[styles.text_footer, globalStyles.textColor]}>Code</Text>
+            <View style={styles.action}>
+                <TextInput 
+                    placeholder="Enter the code you received by email"
+                    style={styles.textInput}
+                    autoCapitalize="none"
+                    onChangeText={(val) => textInputChange(val)}
+                />
+                {data.check_usernameInputChange ? 
+                <Animatable.View
+                    animation="bounceIn"
+                >
+                    <Feather 
+                        name="check-circle"
+                        color="green"
                         size={20}
                     />
-                    <TextInput 
-                        placeholder="Your Username"
-                        placeholderTextColor="#666666"
-                        style={[styles.textInput, globalStyles.textColor]}
-                        autoCapitalize="none"
-                        onChangeText={(val) => textInputChange(val)}
-                        onEndEditing={(e)=>handleValidUser(e.nativeEvent.text)}
-                    />
-                    {data.check_textInputChange ? 
-                    <Animatable.View
-                        animation="bounceIn"
-                    >
-                        <Feather 
-                            name="check-circle"
-                            color="green"
-                            size={20}
-                        />
-                    </Animatable.View>
-                    : null}
-                </View>
-            </ScrollView>
+                </Animatable.View>
+                : null}
+            </View>
 
-            <TouchableOpacity onPress={redefineHandle}>
+            <TouchableOpacity onPress={()=> {confirmSignUpHandle}}>
                 <LinearGradient
                     colors={['yellow', 'gold']}
                     style={styles.signIn}
                 >
-                    <Text style={styles.textSign || globalStyles.textColor}>Send me the code</Text>
+                    <Text style={styles.textSign || globalStyles.textColor}>Confirm</Text>
+                    <MaterialIcons 
+                        name="navigate-next"
+                        style={globalStyles.backgroundColor}
+                        size={20}
+                    />
                 </LinearGradient>
             </TouchableOpacity>
+            </ScrollView>
         </Animatable.View>
       </View>
     );
@@ -128,7 +117,7 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SendCodeToEmail)
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmSignUp)
 
 
 const styles = StyleSheet.create({

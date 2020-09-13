@@ -1,15 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, } from 'react-native';
-import { globalStyles } from '../styles/global';
+import { globalStyles } from '../../styles/global';
 
 
-export default function Products({ navigation }) {
+export default function Contacts({ navigation }) {
   return (
     <View style={globalStyles.container}>
-        <Text>products page content here</Text>
+        <Text>contacts page content here</Text>
     </View>
   );
 }
-
-
-  

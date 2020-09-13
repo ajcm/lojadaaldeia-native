@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { globalStyles } from '../styles/global';
-import ShopList from '../components/shopList';
+import { globalStyles } from '../../styles/global';
+import ShopList from '../../components/shopList';
 
 export default function Home({ navigation }) {
   return (

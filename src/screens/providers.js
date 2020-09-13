@@ -7,7 +7,6 @@ export default function Providers({ navigation }) {
   return (
     <View style={globalStyles.container}>
         <Text>Providers page content here</Text>
-        <Footer navigation={navigation} />
     </View>
   );
 }

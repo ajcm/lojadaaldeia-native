@@ -1,7 +1,8 @@
 import React from 'react';
 import { SearchBar } from 'react-native-elements';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons'; 
 
 import { globalStyles } from '../styles/global';
 
@@ -47,7 +48,7 @@ export default function Header({ title, navigation }) {
             value={search}
           />   
           <TouchableOpacity onPress={navigateToScreen} style={styles.profileIcon} >
-            <MaterialCommunityIcons name='account' style={globalStyles.iconSize} />
+            <Ionicons name="ios-cart" style={globalStyles.iconSize} />
           </TouchableOpacity>
         </View>        
       );

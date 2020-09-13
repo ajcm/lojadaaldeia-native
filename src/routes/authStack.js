@@ -2,18 +2,18 @@ import React from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Splash from '../screens/splash';
-import SignIn from '../screens/signIn';
-import SignUp from '../screens/signUp';
-import RedefinePassword from '../screens/redefinePassword';
-import SendCodeToEmail from '../screens/sendCodeToEmail';
-import ConfirmSignUp from '../screens/confirmSignUp';
-import Home from '../screens/home';
+import Splash from '../screens/auth/splash';
+import SignIn from '../screens/auth/signIn';
+import SignUp from '../screens/auth/signUp';
+import RedefinePassword from '../screens/auth/redefinePassword';
+import SendCodeToEmail from '../screens/auth/sendCodeToEmail';
+import ConfirmSignUp from '../screens/auth/confirmSignUp';
+import Home from '../screens/home/home';
 
 
 const RS = createStackNavigator();
 
-const RootStack = ({navigation}) => (
+const AuthStack = ({navigation}) => (
     <RS.Navigator headerMode='none'>
         <RS.Screen name="Splash" component={Splash}/> 
         <RS.Screen name="SignIn" component={SignIn}/>
@@ -25,4 +25,4 @@ const RootStack = ({navigation}) => (
     </RS.Navigator>
 );
 
-export default RootStack;
+export default AuthStack;

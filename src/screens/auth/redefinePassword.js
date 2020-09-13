@@ -17,11 +17,13 @@ import Feather from 'react-native-vector-icons/Feather';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Auth } from 'aws-amplify';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import { globalStyles } from '../styles/global';
-import * as SessionActions from '../state/actions/session';
+import { globalStyles } from '../../styles/global';
+import * as SessionActions from '../../state/actions/session';
 
-const SignUp = (props) => {
+
+const RedefinePassword = (props) => {
 
     const InputType = {
         PHONE: 'phone',
@@ -29,8 +31,7 @@ const SignUp = (props) => {
     }
 
     const [data, setData] = React.useState({
-        email: '',
-        phone_number: '',
+        code: '',
         password: '',
         confirm_password: '',
         check_emailInputChange: false,
@@ -39,22 +40,11 @@ const SignUp = (props) => {
     });
 
     const textInputChange = (val, inputType) => {
-        switch(inputType) {
-            case InputType.PHONE:
-                setData({
-                    ...data,
-                    phone_number: val,
-                    check_phoneInputChange: val.length !== 0
-                });
-                break;
-            case InputType.EMAIL:
-                setData({
-                    ...data,
-                    email: val,
-                    check_emailInputChange: val.length !== 0
-                });
-                break;
-        }        
+        setData({
+            ...data,
+            code: val,
+            
+        });
     }
 
     const handlePasswordChange = (val) => {
@@ -84,20 +74,21 @@ const SignUp = (props) => {
             confirm_secureTextEntry: !data.confirm_secureTextEntry
         });
     }
-
     
-    const registerHandle = async () => {
+    const redefinePasswordHandle = async () => {
+        //const username = props.navigation.getParam('username');
+        const username = "vitorgalveia@gmail.com";
 
-        if ( data.email.length == 0 || data.phone_number.length == 0 || data.password.length == 0) {
+        if ( username.length == 0 || data.code.length == 0 || data.password.length == 0 || data.confirm_password.length == 0) {
             Alert.alert('Wrong Input!', 'Make sure you filled out all fields.', [
                 {text: 'Okay'}
             ]);
             return;
-        }
+        }        
 
         try {
-            await Auth.signUp({ username: data.email, password: data.password, attributes: { phone_number: data.phone_number } })
-                .then(() => { props.navigation.navigate('ConfirmSignUp', { username: data.email.trim() }); });
+            await Auth.forgotPasswordSubmit(username, data.code, data.password)
+                .then(() => { props.navigation.navigate('Home'); });
         } catch(error) {
             Alert.alert('Ops', error.message, [{text: 'Okay'}]);
             return;
@@ -108,20 +99,21 @@ const SignUp = (props) => {
       <View style={styles.container}>
           <StatusBar backgroundColor='gold' barStyle="light-content"/>
         <View style={styles.header}>
-            <Text style={styles.text_header}>Register Now!</Text>
+            <Text style={styles.text_header}>Set your new password</Text>
         </View>
         <Animatable.View 
             animation="fadeInUpBig"
             style={styles.footer}
         >
             <ScrollView>
-            <Text style={[styles.text_footer, globalStyles.textColor]}>Email</Text>
+
+            <Text style={[styles.text_footer, globalStyles.textColor]}>Code</Text>
             <View style={styles.action}>
                 <TextInput 
-                    placeholder="Your email"
+                    placeholder="Enter the code you received by email"
                     style={styles.textInput}
                     autoCapitalize="none"
-                    onChangeText={(val) => textInputChange(val, InputType.EMAIL)}
+                    onChangeText={(val) => textInputChange(val)}
                 />
                 {data.check_usernameInputChange ? 
                 <Animatable.View
@@ -135,28 +127,7 @@ const SignUp = (props) => {
                 </Animatable.View>
                 : null}
             </View>
-
-            <Text style={[styles.text_footer, globalStyles.textColor]}>Phone</Text>
-            <View style={styles.action}>
-                <TextInput 
-                    placeholder="Your Phone number"
-                    style={styles.textInput}
-                    autoCapitalize="none"
-                    onChangeText={(val) => textInputChange(val, InputType.PHONE)}
-                />
-                {data.check_nameInputChange ? 
-                <Animatable.View
-                    animation="bounceIn"
-                >
-                    <Feather 
-                        name="check-circle"
-                        color="green"
-                        size={20}
-                    />
-                </Animatable.View>
-                : null}
-            </View>
-
+           
             <Text style={[styles.text_footer, { marginTop: 35 }, globalStyles.textColor]}>Password</Text>
             <View style={styles.action}>
                 <TextInput 
@@ -214,42 +185,20 @@ const SignUp = (props) => {
                     }
                 </TouchableOpacity>
             </View>
-            <View style={styles.textPrivate}>
-                <Text style={styles.color_textPrivate}>
-                    By signing up you agree to our
-                </Text>
-                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Terms of service</Text>
-                <Text style={styles.color_textPrivate}>{" "}and</Text>
-                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Privacy policy</Text>
-            </View>
-            <View style={styles.button}>
-                <TouchableOpacity
-                    style={styles.signIn}
-                    onPress={() => {registerHandle( data.username, data.password )}}
-                >
+            
+            <TouchableOpacity onPress={redefinePasswordHandle}>
                 <LinearGradient
                     colors={['yellow', 'gold']}
                     style={styles.signIn}
                 >
-                    <Text style={[styles.textSign, {
-                        color:'#fff'
-                    }]}>Sign Up</Text>
+                    <Text style={styles.textSign || globalStyles.textColor}>Submit</Text>
+                    <MaterialIcons 
+                        name="navigate-next"
+                        style={globalStyles.backgroundColor}
+                        size={20}
+                    />
                 </LinearGradient>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    onPress={() => props.navigation.goBack()}
-                    style={[styles.signIn, {
-                        borderColor: 'gold',
-                        borderWidth: 1,
-                        marginTop: 15
-                    }]}
-                >
-                    <Text style={[styles.textSign, {
-                        color: 'gold'
-                    }]}>Sign In</Text>
-                </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
             </ScrollView>
         </Animatable.View>
       </View>
@@ -266,7 +215,7 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(RedefinePassword)
 
 
 const styles = StyleSheet.create({

@@ -8,6 +8,10 @@ export const globalStyles = StyleSheet.create({
     fontSize: 26,
     color: "white"
   },
+  iconStyle: {
+    fontSize: 26,
+    color: "white"
+  },
   textColor: {
     color: 'black'
   }

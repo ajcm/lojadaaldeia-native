@@ -18,9 +18,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Auth } from 'aws-amplify';
 
-import Users from '../mocks/users';
-import * as SessionActions from '../state/actions/session';
-import { globalStyles } from '../styles/global';
+import * as SessionActions from '../../state/actions/session';
+import { globalStyles } from '../../styles/global';
 
 
 const SignIn = (props) => {

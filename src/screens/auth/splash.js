@@ -12,7 +12,7 @@ import * as Animatable from 'react-native-animatable';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from '@react-navigation/native';
-import { globalStyles } from '../styles/global';
+import { globalStyles } from '../../styles/global';
 
 
 const Splash = ({navigation}) => {
@@ -25,7 +25,7 @@ const Splash = ({navigation}) => {
             <Animatable.Image 
                 animation="bounceIn"
                 duraton="1500"
-            source={require('../../assets/logo.png')}
+            source={require('../../../assets/logo.png')}
             style={styles.logo}
             resizeMode="stretch"
             />

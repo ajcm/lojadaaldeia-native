@@ -1,4 +1,3 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { 
@@ -6,17 +5,20 @@ import {
 } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Entypo } from '@expo/vector-icons';
 import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import * as SessionActions from '../state/actions/session';
+import * as SettingsActions from '../state/actions/settings';
 
 
 const DrawerContent = (props) => {
-
+   
     const paperTheme = useTheme();
+
+    const handleSetIsDarkTheme = () => {
+        props.actions.toggleTheme();
+    }
 
     return(
         <View style={{flex:1}}>
@@ -50,58 +52,18 @@ const DrawerContent = (props) => {
                             label="Inicio"
                             onPress={() => {props.navigation.navigate('Home')}}
                         />
-                        <DrawerItem 
+                        <DrawerItem
                             icon={({color, size}) => (
                                 <Icon 
-                                name="alpha-s" 
+                                name="alpha-p" 
                                 color={color}
                                 size={size}
                                 />
                             )}
-                            label="Selecção"
-                            onPress={() => {props.navigation.navigate('Profile')}}
-                        />
-                        <Drawer.Section title="Products">
-                            <DrawerItem
-                                style={styles.drawerSubItem}
-                                icon={({color, size}) => (
-                                    <Icon 
-                                    name="alpha-v" 
-                                    color={color}
-                                    size={size}
-                                    />
-                                )}
-                                label="Vinhos"
-                                onPress={() => {props.navigation.navigate('BookmarkScreen')}}
-                            >
-                            </DrawerItem>
-                            <DrawerItem 
-                                style={styles.drawerSubItem}
-                                icon={({color, size}) => (
-                                    <Icon 
-                                    name="alpha-q" 
-                                    color={color}
-                                    size={size}
-                                    />
-                                )}
-                                label="Queijos"
-                                onPress={() => {props.navigation.navigate('BookmarkScreen')}}
-                            >
-                            </DrawerItem>
-                            <DrawerItem 
-                                style={styles.drawerSubItem}
-                                icon={({color, size}) => (
-                                    <Icon 
-                                    name="alpha-f" 
-                                    color={color}
-                                    size={size}
-                                    />
-                                )}
-                                label="Fumeiro"
-                                onPress={() => {props.navigation.navigate('BookmarkScreen')}}
-                            >
-                            </DrawerItem>
-                        </Drawer.Section>
+                            label="Produtos"
+                            onPress={() => {props.navigation.navigate('Products')}}
+                        >
+                        </DrawerItem>                         
                         <DrawerItem 
                             icon={({color, size}) => (
                                 <Icon 
@@ -110,35 +72,21 @@ const DrawerContent = (props) => {
                                 size={size}
                                 />
                             )}
-                            label="Casas"
-                            onPress={() => {props.navigation.navigate('SettingsScreen')}}
+                            label="Fornecedores"
+                            onPress={() => {props.navigation.navigate('Suppliers')}}
                         />
                         <DrawerItem 
                             icon={({color, size}) => (
                                 <Icon 
-                                name="select" 
+                                name="information" 
                                 color={color}
                                 size={size}
                                 />
                             )}
-                            label="Region"
-                            onPress={() => {props.navigation.navigate('SupportScreen')}}
+                            label="Sobre"
+                            onPress={() => {props.navigation.navigate('About')}}
                         />
-                        <DrawerItem 
-                            icon={({color, size}) => (
-                                <Icon 
-                                name="information-outline" 
-                                color={color}
-                                size={size}
-                                />
-                            )}
-                            label="About"
-                            onPress={() => {props.navigation.navigate('SupportScreen')}}
-                        />
-                    </Drawer.Section>
-                    <Drawer.Section title="Account">
                         <DrawerItem
-                            style={styles.drawerSubItem}
                             icon={({color, size}) => (
                                 <Icon 
                                 name="account" 
@@ -147,38 +95,12 @@ const DrawerContent = (props) => {
                                 />
                             )}
                             label="Profile"
-                            onPress={() => {props.navigation.navigate('BookmarkScreen')}}
-                        >
-                        </DrawerItem>
-                        <DrawerItem 
-                            style={styles.drawerSubItem}
-                            icon={({color, size}) => (
-                                <Entypo
-                                name="location-pin"
-                                color={color}
-                                size={size}
-                                />
-                            )}
-                            label="Address"
-                            onPress={() => {props.navigation.navigate('BookmarkScreen')}}
-                        >
-                        </DrawerItem>
-                        <DrawerItem 
-                            style={styles.drawerSubItem}
-                            icon={({color, size}) => (
-                                <Icon 
-                                name="credit-card-marker" 
-                                color={color}
-                                size={size}
-                                />
-                            )}
-                            label="Payment"
-                            onPress={() => {props.navigation.navigate('BookmarkScreen')}}
+                            onPress={() => {props.navigation.navigate('Profile')}}
                         >
                         </DrawerItem>
                     </Drawer.Section>
                     <Drawer.Section title="Preferences">
-                        <TouchableRipple onPress={() => {toggleTheme()}}>
+                        <TouchableRipple onPress={handleSetIsDarkTheme}>
                             <View style={styles.preference}>
                                 <Text>Dark Theme</Text>
                                 <View pointerEvents="none">
@@ -209,10 +131,10 @@ const DrawerContent = (props) => {
     );
 }
 
-const mapStateToProps = state => ({ })
+const mapStateToProps = (state, ownProps) => ({ })
 
 const mapDispatchToProps = dispatch => ({    
-    actions: bindActionCreators(SessionActions, dispatch)
+    actions: bindActionCreators(SettingsActions, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerContent)
@@ -249,9 +171,6 @@ const styles = StyleSheet.create({
     },
     drawerSection: {
       marginTop: 15,
-    },
-    drawerSubItem: {
-        marginLeft: 15
     },
     bottomDrawerSection: {
         marginBottom: 15,

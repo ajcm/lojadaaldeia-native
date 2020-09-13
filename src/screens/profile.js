@@ -7,7 +7,6 @@ export default function Profile({ navigation }) {
   return (
     <View style={globalStyles.container}>
         <Text>profile page content here</Text>
-        <Footer navigation={navigation} />
     </View>
   );
 }
