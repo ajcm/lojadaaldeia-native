@@ -76,8 +76,7 @@ const RedefinePassword = (props) => {
     }
     
     const redefinePasswordHandle = async () => {
-        //const username = props.navigation.getParam('username');
-        const username = "vitorgalveia@gmail.com";
+        const username = props.navigation.getParam('username');
 
         if ( username.length == 0 || data.code.length == 0 || data.password.length == 0 || data.confirm_password.length == 0) {
             Alert.alert('Wrong Input!', 'Make sure you filled out all fields.', [
@@ -88,9 +87,13 @@ const RedefinePassword = (props) => {
 
         try {
             await Auth.forgotPasswordSubmit(username, data.code, data.password)
-                .then(() => { props.navigation.navigate('Home'); });
+                .then(() => { props.navigation.navigate('Home'); })
+                .catch(e => {
+                    Alert.alert('Ops', 'The data provided is invalid.', [{text: 'Okay'}]);
+                    return;
+                });
         } catch(error) {
-            Alert.alert('Ops', error.message, [{text: 'Okay'}]);
+            Alert.alert('Ops', 'Unable to connect to the server', [{text: 'Okay'}]);
             return;
         }
     }

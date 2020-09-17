@@ -21,9 +21,9 @@ const ProductsTabStack = () => (
           if (route.name === 'Wine') {
             iconName = "bottle-wine";
           } else if (route.name === 'Cheese') {
-            iconName = "alpha-p";
+            iconName = "circle-outline";
           } else if (route.name === 'Smoke') {
-            iconName = "alpha-s";
+            iconName = "sausage";
           }
 
           return <Icon name={iconName} size={26} color={focused ? 'white' : 'gray'} />;
@@ -34,7 +34,7 @@ const ProductsTabStack = () => (
       <Tab.Screen
         name="Wine"
         component={WineStack}
-        options={{tabBarLabel: 'Inicio'}}
+        options={{tabBarLabel: 'Vinho'}}
       />
       <Tab.Screen
         name="Cheese"

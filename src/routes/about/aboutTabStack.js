@@ -19,9 +19,9 @@ const AboutTabStack = () => (
           let iconName = '';
           
           if (route.name === 'About') {
-            iconName = "bottle-wine";
+            iconName = "information";
           } else if (route.name === 'Contacts') {
-            iconName = "alpha-p";
+            iconName = "contacts";
           } 
 
           return <Icon name={iconName} size={26} color={focused ? 'white' : 'gray'} />;

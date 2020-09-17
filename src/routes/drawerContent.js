@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { 
-    useTheme, Avatar, Title, Caption, Paragraph, Drawer, Text, TouchableRipple, Switch
+    Avatar, Title, Caption, Paragraph, Drawer, Text, TouchableRipple, Switch
 } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { useTheme } from '@react-navigation/native';
 
 import * as SettingsActions from '../state/actions/settings';
 
 
 const DrawerContent = (props) => {
-   
-    const paperTheme = useTheme();
 
+    const theme = useTheme();
+    
+    useEffect(() => {
+        checkUser()
+    }, [])
+
+    const [user, setUser] = useState({})
+
+    async function checkUser() {
+        try {
+            const data = await Auth.currentUserPoolUser();
+            setUser({ username: data.username, ...data.attributes });
+        } catch (err) { 
+            Alert.alert('Ops!', 'failed to connect to the server.', [
+                {text: 'Okay'}
+            ]);
+        }
+    }
+    
     const handleSetIsDarkTheme = () => {
         props.actions.toggleTheme();
     }
 
     return(
         <View style={{flex:1}}>
-            
             <DrawerContentScrollView {...props}>
                 <View style={styles.drawerContent}>
                     <View style={styles.userInfoSection}>
@@ -34,77 +51,47 @@ const DrawerContent = (props) => {
                                 size={50}
                             />
                             <View style={{marginLeft:15, flexDirection:'column'}}>
-                                <Title style={styles.title}>John Doe</Title>
-                                <Caption style={styles.caption}>@j_doe</Caption>
+                                <Title style={styles.title}>{user && user.username}</Title>
+                                <Caption style={styles.caption}>{user && user.email}</Caption>
                             </View>
                         </View>
                     </View>
                     
                     <Drawer.Section style={styles.drawerSection}>
                         <DrawerItem 
-                            icon={({color, size}) => (
-                                <Icon 
-                                name="home-outline" 
-                                color={color}
-                                size={size}
-                                />
-                            )}
+                            icon={({color, size}) => (<Icon name="home-outline" color={color} size={size} />)}
                             label="Inicio"
                             onPress={() => {props.navigation.navigate('Home')}}
                         />
                         <DrawerItem
-                            icon={({color, size}) => (
-                                <Icon 
-                                name="alpha-p" 
-                                color={color}
-                                size={size}
-                                />
-                            )}
+                            icon={({color, size}) => (<Icon name="alpha-p" color={color} size={size} />)}
                             label="Produtos"
                             onPress={() => {props.navigation.navigate('Products')}}
                         >
                         </DrawerItem>                         
                         <DrawerItem 
-                            icon={({color, size}) => (
-                                <Icon 
-                                name="archive" 
-                                color={color}
-                                size={size}
-                                />
-                            )}
+                            icon={({color, size}) => (<Icon name="view-list" color={color} size={size} />)}
                             label="Fornecedores"
-                            onPress={() => {props.navigation.navigate('Suppliers')}}
+                            onPress={() => {props.navigation.navigate('SuppliersList')}}
                         />
                         <DrawerItem 
-                            icon={({color, size}) => (
-                                <Icon 
-                                name="information" 
-                                color={color}
-                                size={size}
-                                />
-                            )}
+                            icon={({color, size}) => (<Icon name="information" color={color} size={size}/>)}
                             label="Sobre"
                             onPress={() => {props.navigation.navigate('About')}}
                         />
                         <DrawerItem
-                            icon={({color, size}) => (
-                                <Icon 
-                                name="account" 
-                                color={color}
-                                size={size}
-                                />
-                            )}
-                            label="Profile"
-                            onPress={() => {props.navigation.navigate('Profile')}}
+                            icon={({color, size}) => (<Icon name="account" color={color} size={size} />)}
+                            label="Perfil"
+                            onPress={() => {props.navigation.navigate('Account')}}
                         >
                         </DrawerItem>
                     </Drawer.Section>
                     <Drawer.Section title="Preferences">
                         <TouchableRipple onPress={handleSetIsDarkTheme}>
                             <View style={styles.preference}>
-                                <Text>Dark Theme</Text>
+                                <Text style={{ color: theme.colors.text }}>Dark Theme</Text>
                                 <View pointerEvents="none">
-                                    <Switch value={paperTheme.dark}/>
+                                    <Switch value={props.isDarkTheme} style={{color: theme.colors.background}} />
                                 </View>
                             </View>
                         </TouchableRipple>
@@ -113,25 +100,18 @@ const DrawerContent = (props) => {
             </DrawerContentScrollView>
             <Drawer.Section style={styles.bottomDrawerSection}>
                 <DrawerItem 
-                    icon={({color, size}) => (
-                        <Icon 
-                        name="exit-to-app" 
-                        color={color}
-                        size={size}
-                        />
-                    )}
+                    icon={({color, size}) => (<Icon name="exit-to-app" color={color} size={size}/>)}
                     label="Sign Out"
-                    onPress={() => {
-                        props.actions.logout();
-                        Auth.signOut();
-                    }}
+                    onPress={() => { Auth.signOut(); }}
                 />
             </Drawer.Section>
         </View>
     );
 }
 
-const mapStateToProps = (state, ownProps) => ({ })
+const mapStateToProps = (state, ownProps) => ({
+    isDarkTheme: state.settings.isDarkTheme
+})
 
 const mapDispatchToProps = dispatch => ({    
     actions: bindActionCreators(SettingsActions, dispatch)

@@ -1,14 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  NavigationContainer,
-  DefaultTheme as NavigationDefaultTheme,
-  DarkTheme as NavigationDarkTheme
-} from '@react-navigation/native';
-import {
-  Provider as PaperProvider,
-  DefaultTheme as PaperDefaultTheme,
-  DarkTheme as PaperDarkTheme
-} from 'react-native-paper';
+import { View, ActivityIndicator, Text } from 'react-native';
 import Amplify from "aws-amplify";
 import rootReducer from './src/state/reducers';
 import { Provider } from 'react-redux';
@@ -65,38 +56,22 @@ Amplify.configure(
 export default function App({props}) {
 
   let [user, setUser] = React.useState(null);
-
-  const CustomDefaultTheme = {
-    ...NavigationDefaultTheme,
-    ...PaperDefaultTheme,
-    colors: {
-      ...NavigationDefaultTheme.colors,
-      ...PaperDefaultTheme.colors,
-      background: '#ffffff',
-      text: '#333333'
-    }
-  }
-
-  const CustomDarkTheme = {
-    ...NavigationDarkTheme,
-    ...PaperDarkTheme,
-    colors: {
-      ...NavigationDarkTheme.colors,
-      ...PaperDarkTheme.colors,
-      background: '#333333',
-      text: '#ffffff'
-    }
-  }
-
-  const theme = false ? CustomDarkTheme : CustomDefaultTheme;
+  let [isLoading, setIsLoading] = React.useState(true);
+  let [hasError, setHasError] = React.useState(false);
 
   useEffect(() => {
     let updateUser = async authState => {
       try {
-        let user = await Auth.currentAuthenticatedUser()
-        setUser(user)
+        await Auth.currentUserPoolUser().then((userInfo) => {
+          setIsLoading(false);
+          setUser(userInfo);
+        }).catch(error => {
+          setIsLoading(false);
+        });
       } catch {
-        setUser(null)
+        setIsLoading(false);
+        setUser(null);
+        setHasError(true);
       }
     }
     Hub.listen('auth', updateUser);
@@ -104,13 +79,27 @@ export default function App({props}) {
     return () => Hub.remove('auth', updateUser)
   }, []);
 
+  if (isLoading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  if (hasError) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Error</Text>
+      </View>
+    );
+  }
+
   return (    
     <Provider store={store}>
-      <NavigationContainer theme={theme}>
         {
           user ? (<AppStack />) : (<AuthStack />)
         }
-      </NavigationContainer>
     </Provider>
   );
 }

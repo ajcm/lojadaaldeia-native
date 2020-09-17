@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, } from 'react-native';
-import { globalStyles } from '../styles/global';
+import { globalStyles } from '../../styles/global';
 
 
-export default function Profile({ navigation }) {
+export default function Payment({ navigation }) {
   return (
     <View style={globalStyles.container}>
-        <Text>profile page content here</Text>
+        <Text>payment page content here</Text>
     </View>
   );
 }

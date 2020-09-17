@@ -91,7 +91,7 @@ const SignIn = (props) => {
     }
 
     const loginHandle = async () => {
-
+        
         if (data.username.length == 0 || data.password.length == 0 ) {
             Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
                 {text: 'Okay'}
@@ -103,10 +103,12 @@ const SignIn = (props) => {
             await Auth.signIn(data.username.trim(), data.password.trim())
                 .then((result) => {
                     props.actions.login(result.signInUserSession.idToken.payload.email, result.signInUserSession.idToken.payload.phone_number, result.signInUserSession.accessToken.jwtToken);
-                    // props.navigation.navigate('Home'); 
+                }).catch(e => {
+                    Alert.alert('Ops', 'Invalid username or password!', [{text: 'Okay'}]);
+                    return;
                 });
         } catch(error) {
-            Alert.alert('Ops', 'Invalid username or password!', [{text: 'Okay'}]);
+            Alert.alert('Ops', 'Unable to connect to the server', [{text: 'Okay'}]);
             return;
         }       
     }

@@ -58,9 +58,13 @@ const SendCodeToEmail = (props) => {
         
         try {
             await Auth.forgotPassword(data.username.trim())
-                .then(() => { props.navigation.navigate('RedefinePassword', { username: data.username.trim() }); });
+                .then(() => { props.navigation.navigate('RedefinePassword', { username: data.username.trim() }); })
+                .catch(e => {
+                    Alert.alert('Ops', 'Something went wrong.', [{text: 'Okay'}]);
+                    return;
+                });
         } catch(error) {
-            Alert.alert('Ops!', error.message, [{text: 'Okay'}]);
+            Alert.alert('Ops', 'Unable to connect to the server', [{text: 'Okay'}]);
             return;
         }
     }

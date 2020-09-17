@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native';
-import { CommonActions } from '@react-navigation/native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, StatusBar, Platform } from 'react-native';
 
 import { getProducts } from '../mocks/contentApi';
 
-export default function ShopList({ navigation }) {
+
+export default function ShopList(props) {
     const [people, setPeople] = useState([
         { name: 'shaun', key: '1' },
         { name: 'yoshi', key: '2' },
@@ -12,10 +12,7 @@ export default function ShopList({ navigation }) {
     ]);
 
     const pressHandler = (id) => {
-        CommonActions.setParams({ id: id });
-        navigation.dispatch(            
-            CommonActions.navigate('ProductDetails')
-        );
+        props.navigation.navigate('ProductDetails', { id });
     }
 
     const getImage = (path) => { 
@@ -28,39 +25,44 @@ export default function ShopList({ navigation }) {
                 return require('../../assets/queijo.jpg');
         }
         
-    }    
+    }
 
-    return (
-            <FlatList 
-                numColumns={2}
-                keyExtractor={(item) => item.id}
-                data={getProducts()}
-                renderItem={
-                    ({item}) => (
-                        <View style={styles.card}>
-                            <View style={styles.cardContent}>
-                                <TouchableOpacity onPress={() => pressHandler(item.id)}>
-                                    <View style={styles.imageContainer}>
-                                        <Image
-                                            style={styles.bottle}
-                                            source={ getImage(item.image) }
-                                        ></Image>
-                                    </View>
-                                    <View style={styles.infoContainer}>
-                                        <Text style={styles.name}>{item.name}</Text>
-                                        <Text style={styles.price}>{item.price}</Text>
-                                        <Text style={styles.description}>{item.description}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    )
-                }
-            />
+    const renderProductItem = ({ item }) => (
+        <View style={styles.card}>
+            <View style={styles.cardContent}>
+                <TouchableOpacity onPress={() => pressHandler(item.id)}>
+                    <View style={styles.imageContainer}>
+                        <Image
+                            style={styles.bottle}
+                            source={ getImage(item.image) }
+                        ></Image>
+                    </View>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.name}>{item.name}</Text>
+                        <Text style={styles.price}>{item.price}</Text>
+                        <Text style={styles.description}>{item.description}</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
+
+    return (     
+        <FlatList
+            numColumns={2}
+            keyExtractor={(item) => item.id}
+            data={getProducts()}
+            renderItem={renderProductItem}
+        />
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "white",
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+    },
     card: {
         margin: 10,
         borderRadius: 6,
@@ -71,7 +73,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 2,
         marginHorizontal: 4,
-        marginVertical: 6      
+        marginVertical: 6,  
+        maxWidth: 175,
     },
     cardContent: {
         marginHorizontal: 18,
@@ -87,7 +90,8 @@ const styles = StyleSheet.create({
     },
     bottle: {
         width: 150,
-        height: 150        
+        height: 150,
+        backgroundColor: '#007bff'        
     },
     price: {
         fontWeight: 'bold'

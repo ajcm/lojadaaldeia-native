@@ -45,12 +45,17 @@ const ConfirmSignUp = (props) => {
                 {text: 'Okay'}
             ]);
             return;
-        }        
+        }
 
         try {
-            await Auth.confirmSignUp(username, data.code).then(() => { props.navigation.navigate('Home'); });
+            await Auth.confirmSignUp(username, data.code)
+                .then(() => { props.navigation.navigate('Home'); })
+                .catch(e => {
+                    Alert.alert('Ops', 'Invalid code!', [{text: 'Okay'}]);
+                    return;
+                });
         } catch(error) {
-            Alert.alert('Ops', error.message, [{text: 'Okay'}]);
+            Alert.alert('Ops', 'Unable to connect to the server', [{text: 'Okay'}]);
             return;
         }
     }
