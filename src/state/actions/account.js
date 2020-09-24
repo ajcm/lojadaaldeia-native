@@ -13,5 +13,7 @@ export const loadProfile = userId => {
 }
 
 export const addAddress = (address) => {
-    dispatch({ type: types.ADD_ADDRESS, address });
+    return (dispatch) => {
+        dispatch({ type: types.ADD_ADDRESS, address });
+    }
 }

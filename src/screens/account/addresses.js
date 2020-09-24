@@ -1,20 +1,28 @@
 import React, { useState, SafeAreaView } from 'react';
+import * as Animatable from 'react-native-animatable';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useTheme } from 'react-native-paper';
 
 import * as AccountActions from '../../state/actions/account';
 
 function Addresses(props) {
 
-const pressHandler = () => {
-  props.navigation.navigate('AddAddress');
-}
+  const pressHandler = () => {
+    props.navigation.navigate('AddAddress');
+  }
 
-const renderAddressItem = ({item}) => (    
-      <View style={styles.card} key={item.id}>
+  const { colors } = useTheme();
+
+  const renderAddressItem = ({item}) => (    
+    <View style={styles.card} key={item.id}>
+      <Animatable.View
+        animation="fadeInUpBig"
+        style={[styles.footer, { backgroundColor: colors.background }]}
+      >
         <View style={styles.cardContent}>
           <View style={styles.data}>
             <Text>{item.contactName}</Text>
@@ -22,15 +30,14 @@ const renderAddressItem = ({item}) => (
             <Text>{item.address1}</Text>
             <Text>{item.address2}</Text>
             <Text>{item.city}, {item.zipCode}</Text>
-            <Text>{item.state}</Text>          
-            <Text>{item.country}</Text>
           </View>
           <View style={styles.action}>
             <MaterialIcons name="edit" size={26} color="#1E90FF" />
             <MaterialIcons name="delete" size={26} color="gray" />
           </View>
         </View>
-      </View>
+      </Animatable.View>
+    </View>
   );
 
   return (
@@ -41,7 +48,7 @@ const renderAddressItem = ({item}) => (
       </TouchableOpacity>
       
       <FlatList
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString(2)}
             data={props.addresses}
             renderItem={renderAddressItem}
       />

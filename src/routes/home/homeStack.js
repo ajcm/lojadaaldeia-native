@@ -13,9 +13,7 @@ const HomeStack = ({ navigation }) => (
         <HomeStackNav.Screen name="Home" component={Home} options={{
             headerTitle: () => <Header title='Início' navigation={navigation} />
         }} />
-        <HomeStackNav.Screen name="ProductDetails" component={ProductDetails} options={{
-            headerTitle: () => <Header title='Início' navigation={navigation} />
-        }} />
+        <HomeStackNav.Screen name="ProductDetails" component={ProductDetails} options={{title: "Detalhe do produto"}} />
     </HomeStackNav.Navigator>
 );
 

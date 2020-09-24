@@ -14,9 +14,7 @@ const AddressesStack = ({ navigation }) => (
         <Nav.Screen name="Addresses" component={Addresses} options={{
             headerTitle: () => <Header title='Endereços' navigation={navigation} />
         }} />
-        <Nav.Screen name="AddAddress" component={AddAddress} options={{
-            headerTitle: () => <Header title='Novo Endereço' navigation={navigation} />
-        }} />
+        <Nav.Screen name="AddAddress" component={AddAddress} />
     </Nav.Navigator>
 );
 
